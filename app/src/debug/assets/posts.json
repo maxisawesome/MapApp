@@ -1,0 +1,39 @@
+{
+  "posts": [
+    {
+      "title": "Free Marketplace Money!",
+      "author" : "Random Freshman",
+      "time": "4:20 PM",
+      "description": "I've got lots of extra mealplan money, message me if you want some!",
+      "type": 0
+    },
+    {
+      "title": "Missing Hydroflask",
+      "author" : "Some liberal arts IDIOT",
+      "time": "1:00 AM",
+      "description": "Missing my white hydroflask! Has stickers that are the entirety of my personality and also no name on it LMAOO hmu if u see it",
+      "type": 0
+    },
+    {
+      "title": "House For Rent",
+      "author" : "Non-Oxy Mofo",
+      "time": "9:00 AM",
+      "description": "live in my house, the rent is high so the only ppl who could possibly live there are college students who i can rip off and contribute to gentrification with!",
+      "type": 0
+    },
+    {
+      "title": "Dance Pro",
+      "author" : "Senior",
+      "time": "8:00 PM",
+      "description": "come to dance pro pls we need to be told we're good even tho this will be the last dancing I do ever",
+      "type": 0
+    },
+    {
+      "title": "Comps or some shit",
+      "author" : "Professor",
+      "time": "12:45 PM",
+      "description": "come to comps or not honestly the person giving them might not want you there but we'll see.",
+      "type": 0
+    }
+  ]
+}

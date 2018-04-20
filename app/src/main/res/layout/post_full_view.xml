@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/messageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="31dp"
+        android:text="Message" />
+
+    <Button
+        android:id="@+id/reportButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/messageButton"
+        android:layout_marginEnd="26dp"
+        android:text="Report" />
+
+    <ImageView
+        android:id="@+id/postPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/messageButton"
+        android:layout_marginTop="32dp"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/postTitleFullTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/postPicture"
+        android:layout_alignTop="@+id/postPicture"
+        android:layout_marginEnd="74dp"
+        android:text="Post Title" />
+
+    <TextView
+        android:id="@+id/postContentFullTextView"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/reportButton"
+        android:layout_alignBottom="@+id/postPicture"
+        android:layout_toEndOf="@+id/postPicture"
+        android:text="Post content goes here" />
+
+    <TextView
+        android:id="@+id/commentsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/postPicture"
+        android:layout_below="@+id/postContentFullTextView"
+        android:layout_marginTop="41dp"
+        android:text="Comments?" />
+</RelativeLayout>
