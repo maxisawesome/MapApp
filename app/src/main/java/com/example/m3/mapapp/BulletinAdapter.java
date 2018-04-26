@@ -60,7 +60,7 @@ public class BulletinAdapter extends BaseAdapter{
             convertView.setTag(holder);
         }
         else{
-            // get the view holder from converview
+            // get the view holder from convert view
             holder = (ViewHolder)convertView.getTag();
         }
         TextView postTitleTextView = holder.listTitle;

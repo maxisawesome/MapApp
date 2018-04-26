@@ -2,6 +2,7 @@ package com.example.m3.mapapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button mSignUpButton;
 
     private EditText usernameEdit;
-    private EditText passwordEdit;
 
     private TextView titleTextView;
     private TextView sloganTextView;
@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         //find the edit text view from the layout
         //save it to the variable username
         usernameEdit = findViewById(R.id.loginUsernameEditText);
-        passwordEdit = findViewById(R.id.loginPasswordEditText);
 
         mLoginButton = findViewById(R.id.loginButton);
         mSignUpButton = findViewById(R.id.loginSignUpButton);
@@ -45,9 +44,14 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                //package intent
-                //start activity
                 launchActivity();
+            }
+        });
+
+        mSignUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //does nothign right now
             }
         });
 

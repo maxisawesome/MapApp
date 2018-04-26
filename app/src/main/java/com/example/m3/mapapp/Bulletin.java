@@ -23,7 +23,7 @@ public class Bulletin {
         //construct a bulletin object for each bulletin in json
         //add the object to arrayList, return ArrayList
         try{
-            String jsonString = loadJsonFromAsset("posts.json", context);
+            String jsonString = loadJsonFromAsset(filename, context);
             JSONObject json = new JSONObject(jsonString);
             JSONArray bulletins = json.getJSONArray("bulletins");
 
