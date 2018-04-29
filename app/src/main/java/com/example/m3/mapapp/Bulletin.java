@@ -11,12 +11,13 @@ import java.util.ArrayList;
 
 public class Bulletin {
     public String title;
-    public String description;
+    public String content;
     public String author;
     public String time;
+    public String location;
     public int type;
 
-    public static ArrayList<Bulletin> getbulletinsFromFile(String filename, Context context){
+    public static ArrayList<Bulletin> getBulletinsFromFile(String filename, Context context){
         ArrayList<Bulletin> bulletinList = new ArrayList<>();
 
         //try to read from json, get info by using tags
@@ -33,7 +34,7 @@ public class Bulletin {
                 Bulletin bulletin = new Bulletin();
 
                 bulletin.title = bulletins.getJSONObject(i).getString("title");
-                bulletin.description = bulletins.getJSONObject(i).getString("description");
+                bulletin.content = bulletins.getJSONObject(i).getString("content");
                 bulletin.author = bulletins.getJSONObject(i).getString("author");
                 bulletin.time = bulletins.getJSONObject(i).getString("time");
                 bulletin.type = bulletins.getJSONObject(i).getInt("type");

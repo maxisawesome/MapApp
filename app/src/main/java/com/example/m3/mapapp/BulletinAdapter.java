@@ -1,6 +1,7 @@
 package com.example.m3.mapapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class BulletinAdapter extends BaseAdapter{
         if (convertView == null){
             // inflate
             convertView = mInflater.inflate(R.layout.bulletin_board_layout, parent, false);
+
             holder = new ViewHolder();
 
             holder.listTitle = convertView.findViewById(R.id.postTitleTextView);
@@ -63,12 +65,14 @@ public class BulletinAdapter extends BaseAdapter{
             // get the view holder from convert view
             holder = (ViewHolder)convertView.getTag();
         }
+
         TextView postTitleTextView = holder.listTitle;
         TextView postContentTextView = holder.listContentPreview;
         ImageView thumbnailImageView = holder.listThumbnail;
 
         Bulletin bulletin = (Bulletin)getItem(position);
 
+        Log.d("DEBUG 1:", bulletin.title);
         postTitleTextView.setText(bulletin.title);
         postContentTextView.setText(bulletin.description);
         thumbnailImageView.setImageResource(R.drawable.testimg);
