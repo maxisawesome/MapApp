@@ -75,28 +75,28 @@ public class MapsActivity extends AppCompatActivity
                 .position(MP)
                 .title("The Marketplace")
                 .snippet("Bulletin Board at the Marketplace"));
-        MPMarker.showInfoWindow();
+        //MPMarker.showInfoWindow();
         
         LatLng southCampus = new LatLng(34.125029, -118.209628);
         Marker southCampusMarker = mMap.addMarker(new MarkerOptions()
                 .position(southCampus)
                 .title("Southern Campus Residence halls")
                 .snippet("Bulletin Board for the southern residence halls."));
-        southCampusMarker.showInfoWindow();
+        //southCampusMarker.showInfoWindow();
 
         LatLng upperCampus = new LatLng(34.127095, -118.209373);
         Marker upperCampusMarker = mMap.addMarker(new MarkerOptions()
                 .position(upperCampus)
                 .title("Upper Campus Residence halls")
                 .snippet("Bulletin Board for the upper campus residence halls."));
-        upperCampusMarker.showInfoWindow();
+        //upperCampusMarker.showInfoWindow();
 
         LatLng lowerCampus = new LatLng(34.128731, -118.211211);
         Marker lowerCampusMarker = mMap.addMarker(new MarkerOptions()
                 .position(lowerCampus)
                 .title("Lower Campus Residence halls")
                 .snippet("Bulletin Board for the lower campus residence halls."));
-        lowerCampusMarker.showInfoWindow();
+        //lowerCampusMarker.showInfoWindow();
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(MP));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(18));

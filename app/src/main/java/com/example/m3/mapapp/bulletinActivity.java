@@ -17,7 +17,9 @@ public class bulletinActivity extends AppCompatActivity {
     private ListView mListView;
     private TextView titleTextView;
     private FloatingActionButton newPost;
+    private String location;
 
+    DatabaseHelper myDb;
 
     private ArrayList<Bulletin> bulletinList;
     private ArrayList<Bulletin> searchedbulletins;
@@ -31,7 +33,7 @@ public class bulletinActivity extends AppCompatActivity {
 
         mContext = this;
 
-        String location = this.getIntent().getExtras().getString("location");
+        location = this.getIntent().getExtras().getString("location");
 
         bulletinList = Bulletin.getBulletinsFromFile("posts.json", this);
         adapter = new BulletinAdapter(this, bulletinList);
@@ -49,6 +51,7 @@ public class bulletinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, newPostActivity.class);
+                i.putExtra("location", location);
                 startActivityForResult(i,1);
             }
         });
