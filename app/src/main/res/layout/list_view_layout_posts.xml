@@ -13,7 +13,7 @@
         android:scaleType="fitXY"
         app:srcCompat="@mipmap/ic_launcher_round"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="239dp" />
+        tools:layout_editor_absoluteY="50dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,22 +21,37 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/postThumbnailImageView">
 
-        <TextView
-            android:id="@+id/postTitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="23dp"
-            android:text="Post Title" />
 
         <TextView
-            android:id="@+id/postContentTextView"
+            android:id="@+id/bulletinTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/postTitleTextView"
-            android:layout_below="@+id/postTitleTextView"
-            android:layout_marginTop="182dp"
-            android:text="Contents Preview" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:text="Post Title"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/bulletinUserTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bulletinTitleTextView"
+            android:layout_below="@+id/bulletinTitleTextView"
+            android:layout_marginTop="-3dp"
+            android:maxLines="3"
+            android:text="username"
+            android:textSize="9dp" />
+
+        <TextView
+            android:id="@+id/bulletinContentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bulletinUserTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="10dp"
+            android:text="Content" />
     </RelativeLayout>
 </RelativeLayout>

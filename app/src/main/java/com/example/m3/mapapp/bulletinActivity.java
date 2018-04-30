@@ -27,8 +27,8 @@ public class bulletinActivity extends AppCompatActivity {
         mContext = this;
 
         bulletinList = Bulletin.getBulletinsFromFile("posts.json", this);
-        System.out.print(bulletinList);
         adapter = new BulletinAdapter(this, bulletinList);
+
         mListView = findViewById(R.id.bulletin_list_view);
         mListView.setAdapter(adapter);
 

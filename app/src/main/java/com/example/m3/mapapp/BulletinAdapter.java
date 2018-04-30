@@ -51,12 +51,13 @@ public class BulletinAdapter extends BaseAdapter{
 
         if (convertView == null){
             // inflate
-            convertView = mInflater.inflate(R.layout.bulletin_board_layout, parent, false);
+            convertView = mInflater.inflate(R.layout.list_view_layout_posts, parent, false);
 
             holder = new ViewHolder();
 
-            holder.listTitle = convertView.findViewById(R.id.postTitleTextView);
-            holder.listContentPreview = convertView.findViewById(R.id.postContentTextView);
+            holder.listTitle = convertView.findViewById(R.id.bulletinTitleTextView);
+            holder.listContentPreview = convertView.findViewById(R.id.bulletinContentTextView);
+            holder.listUsername = convertView.findViewById(R.id.bulletinUserTextView);
             holder.listThumbnail = convertView.findViewById(R.id.postThumbnailImageView);
 
             convertView.setTag(holder);
@@ -68,14 +69,24 @@ public class BulletinAdapter extends BaseAdapter{
 
         TextView postTitleTextView = holder.listTitle;
         TextView postContentTextView = holder.listContentPreview;
+        TextView postUserTextView = holder.listUsername;
         ImageView thumbnailImageView = holder.listThumbnail;
 
         Bulletin bulletin = (Bulletin)getItem(position);
 
-        Log.d("DEBUG 1:", bulletin.title);
+        //Log.d("DEBUG 1:", bulletin.title);
         postTitleTextView.setText(bulletin.title);
-        postContentTextView.setText(bulletin.description);
-        thumbnailImageView.setImageResource(R.drawable.testimg);
+        postContentTextView.setText(bulletin.content);
+        postUserTextView.setText(bulletin.author);
+//
+//        System.out.println("Debugging statement is here, poopsicle");
+//        System.out.println(bulletin.title);
+//        System.out.println(bulletin.content);
+//        System.out.println(bulletin.author);
+//        System.out.println(bulletin.time);
+//        System.out.println(bulletin.type);
+
+        //thumbnailImageView.setImageResource(R.drawable.testimg);
 
         return convertView;
     }
@@ -87,7 +98,9 @@ public class BulletinAdapter extends BaseAdapter{
     private static class ViewHolder{
         public TextView listTitle;
         public TextView listContentPreview;
+        public TextView listUsername;
         public ImageView listThumbnail;
+
     }
 
 }
