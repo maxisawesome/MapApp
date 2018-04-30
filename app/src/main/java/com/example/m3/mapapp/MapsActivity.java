@@ -36,7 +36,6 @@ public class MapsActivity extends AppCompatActivity
     private GoogleMap mMap;
     private Context mContext;
 
-    private FloatingActionButton newPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +48,6 @@ public class MapsActivity extends AppCompatActivity
 
         //this is needed?
         mContext = getApplicationContext();
-
-        newPost = findViewById(R.id.newPostFAB);
-
-        newPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(mContext, newPostActivity.class);
-                startActivityForResult(i,1);
-            }
-        });
 
     }
 
@@ -84,28 +73,28 @@ public class MapsActivity extends AppCompatActivity
         LatLng MP = new LatLng(34.127554, -118.212226);
         Marker MPMarker = mMap.addMarker(new MarkerOptions()
                 .position(MP)
-                .title("Marketplace Marker")
+                .title("The Marketplace")
                 .snippet("Bulletin Board at the Marketplace"));
         MPMarker.showInfoWindow();
         
         LatLng southCampus = new LatLng(34.125029, -118.209628);
         Marker southCampusMarker = mMap.addMarker(new MarkerOptions()
                 .position(southCampus)
-                .title("Southern Campus Marker")
+                .title("Southern Campus Residence halls")
                 .snippet("Bulletin Board for the southern residence halls."));
         southCampusMarker.showInfoWindow();
 
         LatLng upperCampus = new LatLng(34.127095, -118.209373);
         Marker upperCampusMarker = mMap.addMarker(new MarkerOptions()
                 .position(upperCampus)
-                .title("Upper Campus Marker")
+                .title("Upper Campus Residence halls")
                 .snippet("Bulletin Board for the upper campus residence halls."));
         upperCampusMarker.showInfoWindow();
 
         LatLng lowerCampus = new LatLng(34.128731, -118.211211);
         Marker lowerCampusMarker = mMap.addMarker(new MarkerOptions()
                 .position(lowerCampus)
-                .title("Lower Campus Marker")
+                .title("Lower Campus Residence halls")
                 .snippet("Bulletin Board for the lower campus residence halls."));
         lowerCampusMarker.showInfoWindow();
 
@@ -116,6 +105,7 @@ public class MapsActivity extends AppCompatActivity
             public void onInfoWindowClick(Marker marker) {
                 System.out.println("Move to bulletinActivity (posts)");
                 Intent intent = new Intent(mContext, bulletinActivity.class);
+                intent.putExtra("location", marker.getTitle());
                 startActivity(intent);
             }
         });
@@ -135,7 +125,7 @@ public class MapsActivity extends AppCompatActivity
 
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
         // Return false so that we don't consume the event and the default behavior still occurs
         // (the camera animates to the user's current position).
         return false;

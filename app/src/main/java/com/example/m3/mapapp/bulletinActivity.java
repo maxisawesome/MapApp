@@ -1,8 +1,11 @@
 package com.example.m3.mapapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -13,7 +16,9 @@ public class bulletinActivity extends AppCompatActivity {
     private Context mContext;
     private ListView mListView;
     private TextView titleTextView;
-    
+    private FloatingActionButton newPost;
+
+
     private ArrayList<Bulletin> bulletinList;
     private ArrayList<Bulletin> searchedbulletins;
 
@@ -26,11 +31,28 @@ public class bulletinActivity extends AppCompatActivity {
 
         mContext = this;
 
+        String location = this.getIntent().getExtras().getString("location");
+
         bulletinList = Bulletin.getBulletinsFromFile("posts.json", this);
         adapter = new BulletinAdapter(this, bulletinList);
 
+        titleTextView = findViewById(R.id.bulletinBoardLocationTextView);
+        titleTextView.setText("Bulletins at " + location);
+
+
         mListView = findViewById(R.id.bulletin_list_view);
         mListView.setAdapter(adapter);
+
+        newPost = findViewById(R.id.newPostFAB);
+
+        newPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, newPostActivity.class);
+                startActivityForResult(i,1);
+            }
+        });
+
 
     }
 
