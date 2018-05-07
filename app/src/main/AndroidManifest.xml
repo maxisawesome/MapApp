@@ -43,6 +43,8 @@
         </activity>
         <activity android:name=".bulletinActivity"></activity>
         <activity android:name=".newPostActivity"></activity>
+        <activity android:name=".bulletinPostActivity"></activity>
+
 
     </application>
 

@@ -76,20 +76,23 @@ public class newPostActivity extends AppCompatActivity {
                 }
 
 
-
-                Date currentTime = Calendar.getInstance().getTime();
-                boolean isInserted = myDb.insertData(username, titleEdit.getText().toString(),
-                        location, postEdit.getText().toString(),
-                        currentTime.toString(), type);
-                if(isInserted == true){
-                    // I inserted correctly
-                    Toast.makeText(newPostActivity.this, "Bulletin Added", Toast.LENGTH_LONG).show();
-                    Intent movieDetailReturnIntent = new Intent();
-                    setResult(Activity.RESULT_OK, movieDetailReturnIntent);
-                    finish();
+                if(type == -1 || titleEdit.getText().toString().equals("") || postEdit.getText().toString().equals("")) {
+                    Toast.makeText(newPostActivity.this, "Please fill in all information. ", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(newPostActivity.this, "Bulletin Not Added - " +
-                            "something went wrong :(", Toast.LENGTH_LONG).show();
+                    Date currentTime = Calendar.getInstance().getTime();
+                    boolean isInserted = myDb.insertData(username, titleEdit.getText().toString(),
+                            location, postEdit.getText().toString(),
+                            currentTime.toString(), type);
+                    if (isInserted == true) {
+                        // I inserted correctly
+                        Toast.makeText(newPostActivity.this, "Bulletin Added", Toast.LENGTH_LONG).show();
+                        Intent movieDetailReturnIntent = new Intent();
+                        setResult(Activity.RESULT_OK, movieDetailReturnIntent);
+                        finish();
+                    } else {
+                        Toast.makeText(newPostActivity.this, "Bulletin Not Added - " +
+                                "something went wrong :(", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

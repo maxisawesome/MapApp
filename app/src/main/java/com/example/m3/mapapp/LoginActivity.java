@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -52,7 +53,12 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                launchActivity();
+                if(usernameEdit.getText().toString().trim().equals(""))
+                {
+                    Toast.makeText(LoginActivity.this, "Please fill in a username. ", Toast.LENGTH_LONG).show();
+                } else {
+                    launchActivity();
+                }
             }
         });
 

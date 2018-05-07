@@ -27,7 +27,7 @@ public class bulletinActivity extends AppCompatActivity {
     DatabaseHelper myDb;
 
     private ArrayList<Bulletin> bulletinList;
-    private ArrayList<Bulletin> curLocBulletins;
+    //private ArrayList<Bulletin> curLocBulletins;
 
     BulletinAdapter adapter;
 
@@ -93,13 +93,15 @@ public class bulletinActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(mContext, bulletinPostActivity.class);
                 Bulletin tappedBulletin = bulletinList.get(position);
-                System.out.println(tappedBulletin.content);
-                System.out.println(tappedBulletin.username);
-                System.out.println(tappedBulletin.location);
-                System.out.println(tappedBulletin.time);
-                System.out.println(tappedBulletin.title);
-                System.out.println(tappedBulletin.type);
+                i.putExtra("content", tappedBulletin.content);
+                i.putExtra("username", tappedBulletin.username);
+                i.putExtra("location", tappedBulletin.location);
+                i.putExtra("time", tappedBulletin.time);
+                i.putExtra("title", tappedBulletin.title);
+                i.putExtra("type", tappedBulletin.type);
+                startActivity(i);
 
             }
         });
@@ -115,7 +117,7 @@ public class bulletinActivity extends AppCompatActivity {
 
                 System.out.println(bulletinList.size());
                 bulletinList = Bulletin.getBulletinsFromDatabase(location, myDb, this);
-                adapter.notifyDataSetChanged();
+                mListView.setAdapter( new BulletinAdapter(this, bulletinList));
 
                 System.out.println(bulletinList.size());
             }
