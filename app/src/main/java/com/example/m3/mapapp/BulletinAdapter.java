@@ -74,19 +74,29 @@ public class BulletinAdapter extends BaseAdapter{
 
         Bulletin bulletin = (Bulletin)getItem(position);
 
-        //Log.d("DEBUG 1:", bulletin.title);
         postTitleTextView.setText(bulletin.title);
         postContentTextView.setText(bulletin.content);
-        postUserTextView.setText(bulletin.author);
-//
-//        System.out.println("Debugging statement is here, poopsicle");
-//        System.out.println(bulletin.title);
-//        System.out.println(bulletin.content);
-//        System.out.println(bulletin.author);
-//        System.out.println(bulletin.time);
-//        System.out.println(bulletin.type);
+        postUserTextView.setText(bulletin.username);
 
-        //thumbnailImageView.setImageResource(R.drawable.testimg);
+
+        switch (bulletin.type){
+            case 0:
+                thumbnailImageView.setImageResource(R.drawable.have_icon);
+                break;
+            case 1:
+                thumbnailImageView.setImageResource(R.drawable.want_icon);
+                break;
+            case 2:
+                thumbnailImageView.setImageResource(R.drawable.announcement_icon);
+                break;
+            case 3:
+                thumbnailImageView.setImageResource(R.drawable.statement_icon);
+                break;
+            case 4:
+                thumbnailImageView.setImageResource(R.drawable.other_icon);
+                break;
+        }
+
 
         return convertView;
     }

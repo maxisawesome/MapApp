@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <ListView
@@ -12,11 +13,13 @@
 
     <TextView
         android:id="@+id/bulletinBoardLocationTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="194dp"
         android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imageView2"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="21dp"
         android:text="bulletins pplllaaaccceeeehhhoollldddeeerr!" />
 
     <android.support.design.widget.FloatingActionButton
@@ -30,6 +33,16 @@
         android:backgroundTint="@color/colorPrimary"
         android:clickable="true"
         android:src="@android:drawable/ic_menu_add" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bulletin_list_view"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="-121dp"
+        android:layout_marginStart="0dp"
+        app:srcCompat="@drawable/bulletin_logo" />
 
 
 </RelativeLayout>

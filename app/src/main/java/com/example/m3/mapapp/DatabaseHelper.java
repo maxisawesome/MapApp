@@ -106,6 +106,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public void deleteAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
+    }
 
     // delete rows
     public Integer deleteData (String id) {

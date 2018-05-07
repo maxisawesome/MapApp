@@ -1,14 +1,18 @@
 package com.example.m3.mapapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class bulletinActivity extends AppCompatActivity {
@@ -18,11 +22,12 @@ public class bulletinActivity extends AppCompatActivity {
     private TextView titleTextView;
     private FloatingActionButton newPost;
     private String location;
+    private String username;
 
     DatabaseHelper myDb;
 
     private ArrayList<Bulletin> bulletinList;
-    private ArrayList<Bulletin> searchedbulletins;
+    private ArrayList<Bulletin> curLocBulletins;
 
     BulletinAdapter adapter;
 
@@ -32,14 +37,42 @@ public class bulletinActivity extends AppCompatActivity {
         setContentView(R.layout.bulletin_board_layout);
 
         mContext = this;
+        myDb = new DatabaseHelper(this);
+
 
         location = this.getIntent().getExtras().getString("location");
+        username = this.getIntent().getExtras().getString("username");
 
-        bulletinList = Bulletin.getBulletinsFromFile("posts.json", this);
+        bulletinList = Bulletin.getBulletinsFromDatabase(location, myDb, this);
+        ArrayList<Bulletin> curLocBulletins = new ArrayList<>();
+        //There's no data, so use the dummy data
+        if(bulletinList.size() == 0){
+            System.out.println("loading from file");
+            bulletinList = Bulletin.getBulletinsFromFile("posts.json", this);
+            System.out.println(bulletinList.size());
+            for(int i = 0; i < bulletinList.size();  i++){
+                boolean isInserted = myDb.insertData(bulletinList.get(i).username, bulletinList.get(i).title,
+                        bulletinList.get(i).location, bulletinList.get(i).content,
+                        bulletinList.get(i).time, bulletinList.get(i).type);
+                if(!isInserted){
+                    Toast.makeText(bulletinActivity.this, "Bulletins couldn't load - " +
+                            "something went wrong.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+            for(int i = 0; i < bulletinList.size();  i++) {
+                if(bulletinList.get(i).location.equals(location)){
+                    curLocBulletins.add(bulletinList.get(i));
+                }
+            }
+            bulletinList = curLocBulletins;
+        }
+
         adapter = new BulletinAdapter(this, bulletinList);
 
         titleTextView = findViewById(R.id.bulletinBoardLocationTextView);
-        titleTextView.setText("Bulletins at " + location);
+        titleTextView.setText(location);
+        titleTextView.setTextSize(24);
 
 
         mListView = findViewById(R.id.bulletin_list_view);
@@ -52,11 +85,41 @@ public class bulletinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(mContext, newPostActivity.class);
                 i.putExtra("location", location);
+                i.putExtra("username", username);
                 startActivityForResult(i,1);
             }
         });
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bulletin tappedBulletin = bulletinList.get(position);
+                System.out.println(tappedBulletin.content);
+                System.out.println(tappedBulletin.username);
+                System.out.println(tappedBulletin.location);
+                System.out.println(tappedBulletin.time);
+                System.out.println(tappedBulletin.title);
+                System.out.println(tappedBulletin.type);
 
+            }
+        });
+
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+
+                System.out.println(bulletinList.size());
+                bulletinList = Bulletin.getBulletinsFromDatabase(location, myDb, this);
+                adapter.notifyDataSetChanged();
+
+                System.out.println(bulletinList.size());
+            }
+        }
     }
 
 }

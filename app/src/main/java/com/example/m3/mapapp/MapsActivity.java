@@ -35,6 +35,7 @@ public class MapsActivity extends AppCompatActivity
 
     private GoogleMap mMap;
     private Context mContext;
+    private String username;
 
 
     @Override
@@ -45,7 +46,7 @@ public class MapsActivity extends AppCompatActivity
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        username = this.getIntent().getExtras().getString("username");
         //this is needed?
         mContext = getApplicationContext();
 
@@ -103,9 +104,9 @@ public class MapsActivity extends AppCompatActivity
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                System.out.println("Move to bulletinActivity (posts)");
                 Intent intent = new Intent(mContext, bulletinActivity.class);
                 intent.putExtra("location", marker.getTitle());
+                intent.putExtra("username", username);
                 startActivity(intent);
             }
         });

@@ -29,6 +29,8 @@ public class newPostActivity extends AppCompatActivity {
     private EditText titleEdit;
     private EditText postEdit;
     private String location;
+    private String username;
+    private int type = -1;
 
     DatabaseHelper myDb;
 
@@ -40,7 +42,7 @@ public class newPostActivity extends AppCompatActivity {
         mContext = this;
 
         location = this.getIntent().getExtras().getString("location");
-
+        username = this.getIntent().getExtras().getString("username");
         submitButton = findViewById(R.id.submitButton);
         titleEdit = findViewById(R.id.newBulletinTitleEditText);
         postEdit = findViewById(R.id.newBulletinContentEditText);
@@ -51,16 +53,38 @@ public class newPostActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                System.out.println("Debug here, poop");
+                System.out.println(rGroup.getCheckedRadioButtonId());
+
+                switch(rGroup.getCheckedRadioButtonId()) {
+                    case R.id.radio_button_1:
+                        type = 0;
+                        break;
+                    case R.id.radio_button_2:
+                        type = 1;
+                        break;
+                    case R.id.radio_button_3:
+                        type = 2;
+                        break;
+                    case R.id.radio_button_4:
+                        type = 3;
+                        break;
+                    case R.id.radio_button_5:
+                        type = 4;
+                        break;
+
+                }
+
+
+
                 Date currentTime = Calendar.getInstance().getTime();
-                boolean isInserted = myDb.insertData("username placeholder", titleEdit.getText().toString(),
+                boolean isInserted = myDb.insertData(username, titleEdit.getText().toString(),
                         location, postEdit.getText().toString(),
-                        currentTime.toString(), rGroup.getCheckedRadioButtonId());
+                        currentTime.toString(), type);
                 if(isInserted == true){
                     // I inserted correctly
                     Toast.makeText(newPostActivity.this, "Bulletin Added", Toast.LENGTH_LONG).show();
                     Intent movieDetailReturnIntent = new Intent();
-                    //movieDetailReturnIntent.putExtra("position", position);
-                    //movieDetailReturnIntent.putExtra("checkedRadioButton", checkedButton);
                     setResult(Activity.RESULT_OK, movieDetailReturnIntent);
                     finish();
                 } else {

@@ -8,8 +8,9 @@
 
     <ImageView
         android:id="@+id/postThumbnailImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:maxWidth="50dp"
         android:scaleType="fitXY"
         app:srcCompat="@mipmap/ic_launcher_round"
         tools:layout_editor_absoluteX="16dp"
